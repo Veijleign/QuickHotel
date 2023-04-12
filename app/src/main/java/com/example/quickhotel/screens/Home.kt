@@ -1,108 +1,145 @@
 package com.example.quickhotel.screens
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.quickhotel.NavHostHomeScreens
+import com.example.quickhotel.BottomBarScreen
 import com.example.quickhotel.R
-import com.example.quickhotel.ServiceCard
-import com.example.quickhotel.ui.theme.Purple500
+import com.example.quickhotel.navigation.HomeNavGraph
 
 @Composable
-fun HomeScreen() {
-
-
-    ServicesList()
-
-}
-
-@Composable
-fun ServicesList() {
-
-    val navController = rememberNavController()
-
-    val mainServicesList: List<ServiceCard> = listOf(
-        ServiceCard.HotelInformation,
-        ServiceCard.SightsInformation,
-        ServiceCard.RestaurantsAndBarsInformation,
-        ServiceCard.FitnessInformation,
-        ServiceCard.ServiceInformation,
-        ServiceCard.AdditionalServiceInformation,
-        ServiceCard.RoomControlInformation
-    )
-
-    LazyColumn(
-
-    ) {
-        itemsIndexed(
-            mainServicesList
-        ) { _, item ->
-            ServiceCard(item, navController)
-            //NavHostHomeScreens(navController = navController)
-        }
-    }
-}
-
-@OptIn(ExperimentalMaterialApi::class)
-@Composable
-fun ServiceCard(
-    item: ServiceCard,
-    navController: NavHostController
+fun HomeScreen(
+    navController: NavHostController = rememberNavController()
 ) {
-
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(5.dp),
-        backgroundColor = Color.Black,
-        shape = RoundedCornerShape(10.dp),
-        onClick = {
-            navController.navigate(item.route)
-/*            {
-                popUpTo(navController.graph.findStartDestination().id)
-                launchSingleTop = true
-            }*/
-        }
-    ) {
-        Box(
-            contentAlignment = Alignment.BottomStart
-        ) {
-            Image(
-                painter = painterResource(id = item.image),
-                contentDescription = item.title,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(130.dp),
-                alpha = 0.85f
+    Scaffold(
+        bottomBar = {
+            BottomBar(
+                navController = navController,
+                items = listOf(
+                    BottomBarScreen.Home,
+                    BottomBarScreen.Key,
+                    BottomBarScreen.Chat
+                )
             )
-            Text(
-                text = item.title,
+        },
+        topBar = {
+            TopBar()
+        }
+    ) { innerPadding ->
+        Box(
+            modifier = Modifier.padding(innerPadding)
+        ) {
+            HomeNavGraph(navController = navController)
+        }
+    }
+}
+@Composable
+fun TopBar() {
+    TopAppBar(
+        title = {
+            Box(
                 modifier = Modifier
-                    .padding(3.dp),
-                fontSize = 26.sp
+                    .fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "Room 611",
+                    fontSize = 20.sp,
+                    maxLines = 1
+                )
+            }
+        },
+        backgroundColor = Color.Transparent.copy(alpha = 0.2f),
+        //colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Cyan.copy(alpha = 0.3f)),
+        navigationIcon = {
+            IconButton(onClick = {
+
+            }) {
+                Icon(
+                    Icons.Default.Menu, "Menu",
+                    modifier = Modifier.size(34.dp)
+                )
+            }
+        },
+        actions = {
+            IconButton(onClick = { // synchronize weather
+
+            }) {
+                Row() {
+                    Icon(
+                        modifier = Modifier
+                            .size(29.dp),
+                        painter = painterResource(id = R.drawable.weather_icon),
+                        contentDescription = "Navigation Icon",
+                        tint = Color.White,
+                    )
+                    Spacer(Modifier.width(4.dp))
+                    Text(
+                        text = "13°C",
+                        fontSize = 22.sp,
+                        color = Color.White
+                    )
+                }
+            }
+        },
+        contentColor = Color.White,
+    )
+}
+
+@Composable
+fun BottomBar(
+    navController: NavHostController,
+    items: List<BottomBarScreen>,
+    modifier: Modifier = Modifier
+) {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+    BottomNavigation(
+        modifier = modifier,
+        backgroundColor = Color.DarkGray,
+        elevation = 5.dp
+    ) {
+        items.forEach { item ->
+            val selected = currentRoute == item.route
+            val contentColor =
+                if (selected) Color.White else Color.Black // color of icon
+            BottomNavigationItem(
+                selected = selected,
+                onClick = { /*onItemClick(item)*/
+                    navController.navigate(item.route) {
+                        popUpTo(navController.graph.findStartDestination().id)
+                        launchSingleTop = true
+                    }
+                },
+                selectedContentColor = Color.White,
+                unselectedContentColor = Color.Gray,
+                label = {
+                    Text(text = item.title)
+                },
+                icon = {
+                    Icon(
+                        modifier = Modifier
+                            .size(29.dp),
+                        painter = painterResource(id = item.icon),
+                        contentDescription = "Navigation Icon",
+                        tint = contentColor,
+                    )
+                }
             )
         }
     }
 }
+

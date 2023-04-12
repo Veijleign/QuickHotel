@@ -66,4 +66,6 @@ dependencies {
 
     // UI для StatusBar
     implementation "com.google.accompanist:accompanist-systemuicontroller:0.28.0"
+
+    implementation "com.google.code.gson:gson:2.10"
 }
