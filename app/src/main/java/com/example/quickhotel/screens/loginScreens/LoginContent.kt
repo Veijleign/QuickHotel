@@ -1,4 +1,4 @@
-package com.example.quickhotel.screens
+package com.example.quickhotel.screens.loginScreens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -15,13 +16,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.quickhotel.R
 
 @Composable
 fun LoginContent( // needed to be changed
-    onLogInClick: () -> Unit,
+    onLogInClick: (String, String) -> Unit,
     onForgotClick: () -> Unit
 ) {
     val userLogin = remember {
@@ -30,9 +35,18 @@ fun LoginContent( // needed to be changed
     val userPassword = remember {
         mutableStateOf("")
     }
+
+    var passwordVisibility = remember {
+        mutableStateOf(false)
+    }
+    val icon = if (passwordVisibility.value)
+        painterResource(id = R.drawable.visibility_icon)
+    else
+        painterResource(id = R.drawable.visibility_off_icon)
+
     Column(
         modifier = Modifier
-            .background(Color.Black)
+            .background(Color.LightGray)
     ) {
         Column(
             modifier = Modifier
@@ -72,10 +86,11 @@ fun LoginContent( // needed to be changed
                 },
                 singleLine = true
             )
+            //password
             OutlinedTextField(
                 modifier = Modifier
                     .padding(top = 15.dp),
-                value = userLogin.value,
+                value = userPassword.value,
                 colors = TextFieldDefaults.outlinedTextFieldColors(
                     focusedBorderColor = Color.LightGray,
                     unfocusedBorderColor = Color.White
@@ -86,15 +101,33 @@ fun LoginContent( // needed to be changed
                 label = {
                     Text(text = "User Password", color = Color.White)
                 },
-                singleLine = true
+                singleLine = true,
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Password
+                ),
+                trailingIcon = {
+                    IconButton(onClick = {
+                        passwordVisibility.value = !passwordVisibility.value
+                    }) {
+                        Icon(
+                            painter = icon,
+                            contentDescription = "visibility Icon",
+                            modifier = Modifier.size(30.dp)
+                        )
+
+                    }
+                },
+                visualTransformation = if (passwordVisibility.value) VisualTransformation.None
+                else PasswordVisualTransformation()
             )
+
             Spacer(modifier = Modifier.size(15.dp))
             OutlinedButton(
                 modifier = Modifier
                     .width(110.dp)
                     .height(45.dp),
                 onClick = {
-                    onLogInClick() // check difference: .invoke(searchBIN.value)
+                    onLogInClick(userLogin.value, userPassword.value)
                 },
                 border = BorderStroke(1.dp, Color.LightGray),
                 shape = RoundedCornerShape(40)

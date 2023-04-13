@@ -1,10 +1,13 @@
 package com.example.quickhotel.navigation
 
+import android.util.Log
+import android.widget.Toast
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.example.quickhotel.screens.LoginContent
+import com.example.quickhotel.retrofit.retrofitRequest
+import com.example.quickhotel.screens.loginScreens.LoginContent
 import com.example.quickhotel.screens.ScreenContent
 
 fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
@@ -14,9 +17,13 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
     ) {
         composable(route = AuthScreen.Login.route) {
             LoginContent(
-                onLogInClick = {
+                onLogInClick = { login, password -> // request for log-in
+
+                    retrofitRequest(login, password)
                     navController.popBackStack()
                     navController.navigate(Graph.HOME)
+
+
                 },
                 onForgotClick = { // change to the new screen
                     navController.navigate(AuthScreen.Forgot.route)

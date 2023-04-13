@@ -6,12 +6,6 @@ sealed class ServiceCard(
     val image: Int
 ) {
 
-    object HomeScreen: BottomBarScreen(
-        route = "home",
-        title = "home",
-        icon = R.drawable.main_icon
-    )
-
     object HotelInformation : ServiceCard(
         route = "HotelInformation",
         title = "Информация об отеле",
