@@ -1,5 +1,6 @@
 package com.example.quickhotel.screens.homeScreens
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -56,7 +57,7 @@ fun ServiceCard(
     item: ServiceCard,
     navController: NavHostController
 ) {
-
+    Log.d("TestRequest", "Inside home screen")
     Card(
         modifier = Modifier
             .fillMaxWidth()

@@ -2,14 +2,14 @@ package com.example.quickhotel.retrofit
 
 import android.util.Log
 import com.example.quickhotel.retrofit.common.Common
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import retrofit2.Response
 
-fun retrofitRequest(
+@OptIn(DelicateCoroutinesApi::class)
+suspend fun retrofitAuthRequest(
     login: String,
     password: String
-) {
+) : Boolean {
     var user = User(
         null,
         null,
@@ -20,16 +20,17 @@ fun retrofitRequest(
         null,
         null
     )
-    CoroutineScope(Dispatchers.IO).launch {
-        try {
-            Log.d("TestRequest", "Sent data: Login: $login, password: $password")
-            user = Common.retrofitService.authFun(
-                AuthRequest(login, password)
-            )
-            Log.d("TestRequest", "Received data: $user")
-        } catch (e: java.lang.Exception) {
-            Log.d("TestRequest", "Exception: $e" )
-        }
+    var access: Boolean = false
+
+    withContext(Dispatchers.IO) {
+        val response = Common.retrofitService.authFun(
+            AuthRequest(login, password)
+        )
+        Log.d("RetrofitTest", "${response.body()}")
+        access = response.body() != null
+
+    //token = response.body()?.token.toString()
     }
 
+    return access
 }

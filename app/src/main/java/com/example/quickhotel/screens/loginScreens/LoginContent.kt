@@ -27,7 +27,8 @@ import com.example.quickhotel.R
 @Composable
 fun LoginContent( // needed to be changed
     onLogInClick: (String, String) -> Unit,
-    onForgotClick: () -> Unit
+    onForgotClick: () -> Unit,
+    onLogInAsGuest: () -> Unit
 ) {
     val userLogin = remember {
         mutableStateOf("")
@@ -40,13 +41,13 @@ fun LoginContent( // needed to be changed
         mutableStateOf(false)
     }
     val icon = if (passwordVisibility.value)
-        painterResource(id = R.drawable.visibility_icon)
-    else
         painterResource(id = R.drawable.visibility_off_icon)
+    else
+        painterResource(id = R.drawable.visibility_icon)
 
     Column(
         modifier = Modifier
-            .background(Color.LightGray)
+            .background(Color.Black)
     ) {
         Column(
             modifier = Modifier
@@ -69,6 +70,7 @@ fun LoginContent( // needed to be changed
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            //login
             Spacer(modifier = Modifier.size(40.dp))
             OutlinedTextField(
                 modifier = Modifier
@@ -76,7 +78,8 @@ fun LoginContent( // needed to be changed
                 value = userLogin.value,
                 colors = TextFieldDefaults.outlinedTextFieldColors(
                     focusedBorderColor = Color.LightGray,
-                    unfocusedBorderColor = Color.White
+                    unfocusedBorderColor = Color.White,
+                    textColor = Color.White
                 ),
                 onValueChange = {
                     userLogin.value = it
@@ -93,7 +96,8 @@ fun LoginContent( // needed to be changed
                 value = userPassword.value,
                 colors = TextFieldDefaults.outlinedTextFieldColors(
                     focusedBorderColor = Color.LightGray,
-                    unfocusedBorderColor = Color.White
+                    unfocusedBorderColor = Color.White,
+                    textColor = Color.White
                 ),
                 onValueChange = {
                     userPassword.value = it
@@ -114,7 +118,6 @@ fun LoginContent( // needed to be changed
                             contentDescription = "visibility Icon",
                             modifier = Modifier.size(30.dp)
                         )
-
                     }
                 },
                 visualTransformation = if (passwordVisibility.value) VisualTransformation.None
@@ -122,20 +125,41 @@ fun LoginContent( // needed to be changed
             )
 
             Spacer(modifier = Modifier.size(15.dp))
-            OutlinedButton(
-                modifier = Modifier
-                    .width(110.dp)
-                    .height(45.dp),
-                onClick = {
-                    onLogInClick(userLogin.value, userPassword.value)
-                },
-                border = BorderStroke(1.dp, Color.LightGray),
-                shape = RoundedCornerShape(40)
-            ) {
-                Text(
-                    text = "Log In",
-                    color = Color.White
-                )
+            // login and guest btns
+            Row {
+                // login btn
+                OutlinedButton(
+                    modifier = Modifier
+                        .width(110.dp)
+                        .height(45.dp),
+                    onClick = {
+                        onLogInClick(userLogin.value, userPassword.value)
+                    },
+                    border = BorderStroke(1.dp, Color.LightGray),
+                    shape = RoundedCornerShape(40)
+                ) {
+                    Text(
+                        text = "Log In",
+                        color = Color.White
+                    )
+                }
+                Spacer(modifier = Modifier.size(10.dp))
+                // guest btn
+                OutlinedButton(
+                    modifier = Modifier
+                        .width(110.dp)
+                        .height(45.dp),
+                    onClick = {
+                        onLogInAsGuest()
+                    },
+                    border = BorderStroke(1.dp, Color.LightGray),
+                    shape = RoundedCornerShape(40)
+                ) {
+                    Text(
+                        text = "Гость",
+                        color = Color.White
+                    )
+                }
             }
             Spacer(modifier = Modifier.size(10.dp))
             Text(
@@ -147,5 +171,4 @@ fun LoginContent( // needed to be changed
             )
         }
     }
-
 }

@@ -1,15 +1,16 @@
 package com.example.quickhotel.navigation
 
 import android.util.Log
-import android.widget.Toast
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.example.quickhotel.retrofit.retrofitRequest
-import com.example.quickhotel.screens.loginScreens.LoginContent
+import com.example.quickhotel.retrofit.retrofitAuthRequest
 import com.example.quickhotel.screens.ScreenContent
+import com.example.quickhotel.screens.loginScreens.LoginContent
+import kotlinx.coroutines.*
 
+@OptIn(DelicateCoroutinesApi::class)
 fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
     navigation(
         route = Graph.AUTHENTICATION,
@@ -17,16 +18,36 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
     ) {
         composable(route = AuthScreen.Login.route) {
             LoginContent(
-                onLogInClick = { login, password -> // request for log-in
+                onLogInClick = { login, password ->
 
-                    retrofitRequest(login, password)
                     navController.popBackStack()
-                    navController.navigate(Graph.HOME)
 
+/*                    runBlocking {
+                        retrofitAuthRequest(login, password)
+                    }*/
 
+                    CoroutineScope(Dispatchers.Main).launch {
+                        /*GlobalScope.async(Dispatchers.IO) {
+                            retrofitAuthRequest(login, password)
+                        }.await()*/
+                        var access: Boolean = false
+                        val job = launch {
+                            access = retrofitAuthRequest(login, password)
+                            Log.d("RetrofitTest", "Inside job: $access")
+                        }
+                        job.join()
+                        if (access) { // add Toast
+                            navController.navigate(Graph.HOME)
+                        } else {
+                            Log.d("RetrofitTest", "Inside job: NO")
+                        }
+                    }
                 },
                 onForgotClick = { // change to the new screen
                     navController.navigate(AuthScreen.Forgot.route)
+                },
+                onLogInAsGuest = {
+                    navController.navigate(Graph.HOME)
                 }
             )
         }
