@@ -1,4 +1,6 @@
-package com.example.quickhotel
+package com.example.quickhotel.screens.homeScreens
+
+import com.example.quickhotel.R
 
 sealed class BottomBarScreen( // representation of different screens
     val route: String,

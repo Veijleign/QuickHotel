@@ -12,6 +12,12 @@ sealed class ServiceCard(
         image = R.drawable.hotel_info_img
     )
 
+    object RoomsInformation: ServiceCard(
+        route = "RoomsInformation",
+        title = "Информация о комнатах",
+        image = R.drawable.hotel_rooms
+    )
+
     object SightsInformation : ServiceCard(
         route = "SightsInformation",
         title = "Достопримечательности",
@@ -30,16 +36,10 @@ sealed class ServiceCard(
         image = R.drawable.fitness_img
     )
 
-    object ServiceInformation : ServiceCard(
+    object MoreServicesInformation : ServiceCard(
         route = "ServiceInformation",
         title = "Услуги",
         image = R.drawable.services_img
-    )
-
-    object AdditionalServiceInformation : ServiceCard(
-        route = "AdditionalServiceInformation",
-        title = "Дополнительные услуги",
-        image = R.drawable.additional_service_img
     )
 
     object RoomControlInformation : ServiceCard(

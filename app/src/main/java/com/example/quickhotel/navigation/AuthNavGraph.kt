@@ -8,9 +8,11 @@ import androidx.navigation.navigation
 import com.example.quickhotel.retrofit.retrofitAuthRequest
 import com.example.quickhotel.screens.ScreenContent
 import com.example.quickhotel.screens.loginScreens.LoginContent
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-@OptIn(DelicateCoroutinesApi::class)
+
 fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
     navigation(
         route = Graph.AUTHENTICATION,
@@ -19,10 +21,8 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
         composable(route = AuthScreen.Login.route) {
             LoginContent(
                 onLogInClick = { login, password ->
-
                     navController.popBackStack()
-
-/*                    runBlocking {
+                    /*runBlocking {
                         retrofitAuthRequest(login, password)
                     }*/
 
@@ -30,7 +30,7 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
                         /*GlobalScope.async(Dispatchers.IO) {
                             retrofitAuthRequest(login, password)
                         }.await()*/
-                        var access: Boolean = false
+                        var access = false
                         val job = launch {
                             access = retrofitAuthRequest(login, password)
                             Log.d("RetrofitTest", "Inside job: $access")
@@ -52,7 +52,9 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
             )
         }
         composable(route = AuthScreen.Forgot.route) {
-            ScreenContent(name = AuthScreen.Forgot.route) {}
+            ScreenContent(name = AuthScreen.Forgot.route) {
+
+            }
         }
     }
 }

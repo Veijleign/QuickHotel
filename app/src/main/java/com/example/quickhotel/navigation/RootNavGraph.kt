@@ -14,20 +14,15 @@ fun RootNavigationGraph(
         navController = navController,
         route = Graph.ROOT,
         startDestination = Graph.AUTHENTICATION
-    ) {
+    ) {// тут куда мы можем идти
         authNavGraph(navController = navController)
         composable(route = Graph.HOME) {
             HomeScreen()
         }
-
     }
 }
-
 object Graph {
     const val ROOT = "root_graph"
     const val AUTHENTICATION = "auth_graph"
     const val HOME = "home_graph"
-    const val DETAILS = "details_graph"
-    const val KEY = "key_graph"
-    const val CHAT = "chat_graph"
 }

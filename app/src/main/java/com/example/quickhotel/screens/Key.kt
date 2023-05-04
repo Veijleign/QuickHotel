@@ -50,19 +50,6 @@ fun KeyScreen() {
                 modifier = Modifier
                     .height(10.dp)
             )
-            OutlinedButton(
-                onClick = {
-
-                },
-                border = BorderStroke(1.dp, Color.DarkGray),
-                shape = RoundedCornerShape(50)
-            ) {
-                Text(
-                    text = "Back",
-                    color = Color.White,
-                    fontSize = 20.sp
-                )
-            }
         }
     }
 }

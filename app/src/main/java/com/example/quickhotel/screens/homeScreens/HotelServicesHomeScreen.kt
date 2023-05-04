@@ -2,12 +2,7 @@ package com.example.quickhotel.screens.homeScreens
 
 import android.util.Log
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
@@ -23,33 +18,41 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.quickhotel.ServiceCard
+//import com.example.quickhotel.navigation.MainScreenNavigationGraph
 
+/*
 @Composable
-fun ServicesList() {
-
-    val navController = rememberNavController()
+fun ServicesList(
+    navController: NavHostController = rememberNavController()
+) {
 
     val mainServicesList: List<ServiceCard> = listOf(
         ServiceCard.HotelInformation,
+        ServiceCard.RoomsInformation,
         ServiceCard.SightsInformation,
         ServiceCard.RestaurantsAndBarsInformation,
         ServiceCard.FitnessInformation,
-        ServiceCard.ServiceInformation,
-        ServiceCard.AdditionalServiceInformation,
+        ServiceCard.MoreServicesInformation,
         ServiceCard.RoomControlInformation
     )
+    // CORRECT TEST
+    // здесь отрисовывается каждый из элементов главного экрана с сервисами (карточки)
+    //MainScreenNavigationGraph(navController = navController)
 
-    LazyColumn(
+    */
+/*LazyColumn(
 
     ) {
         itemsIndexed(
             mainServicesList
         ) { _, item ->
             ServiceCard(item, navController)
-            //NavHostHomeScreens(navController = navController)
+            //MainScreenNavigationGraph(navController = navController)
         }
-    }
+    }*//*
+
 }
+*/
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -66,10 +69,6 @@ fun ServiceCard(
         shape = RoundedCornerShape(10.dp),
         onClick = {
             navController.navigate(item.route)
-/*            {
-                popUpTo(navController.graph.findStartDestination().id)
-                launchSingleTop = true
-            }*/
         }
     ) {
         Box(
