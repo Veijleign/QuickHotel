@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 
 
 fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
+//что отображажет и какие действия доступны
     navigation(
         route = Graph.AUTHENTICATION,
         startDestination = AuthScreen.Login.route
@@ -52,9 +53,7 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
             )
         }
         composable(route = AuthScreen.Forgot.route) {
-            ScreenContent(name = AuthScreen.Forgot.route) {
-
-            }
+            ScreenContent(name = AuthScreen.Forgot.route) { }
         }
     }
 }

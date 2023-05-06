@@ -7,43 +7,43 @@ sealed class ServiceCard(
 ) {
 
     object HotelInformation : ServiceCard(
-        route = "HotelInformation",
+        route = "ABOUT_HOTEL",
         title = "Информация об отеле",
         image = R.drawable.hotel_info_img
     )
 
     object RoomsInformation: ServiceCard(
-        route = "RoomsInformation",
+        route = "ROOMS",
         title = "Информация о комнатах",
         image = R.drawable.hotel_rooms
     )
 
     object SightsInformation : ServiceCard(
-        route = "SightsInformation",
+        route = "SIGHTS",
         title = "Достопримечательности",
         image = R.drawable.sights_img
     )
 
     object RestaurantsAndBarsInformation : ServiceCard(
-        route = "RestaurantsAndBarsInformation",
+        route = "RESTAURANTS",
         title = "Рестораны и бары",
         image = R.drawable.restaurants_bars_img
     )
 
     object FitnessInformation : ServiceCard(
-        route = "FitnessInformation",
+        route = "FITNESS",
         title = "Спа&Фитнес",
         image = R.drawable.fitness_img
     )
 
     object MoreServicesInformation : ServiceCard(
-        route = "ServiceInformation",
+        route = "ADDITIONAL_SERVICES",
         title = "Услуги",
         image = R.drawable.services_img
     )
 
     object RoomControlInformation : ServiceCard(
-        route = "RoomControlInformation",
+        route = "ROOM_CONTROL",
         title = "Управление комнатой",
         image = R.drawable.room_control_img
     )

@@ -7,9 +7,7 @@ import androidx.navigation.compose.composable
 import com.example.quickhotel.screens.HomeScreen
 
 @Composable
-fun RootNavigationGraph(
-    navController: NavHostController
-) {
+fun RootNavigationGraph(navController: NavHostController) { // правила того, куда переход выполняется
     NavHost(
         navController = navController,
         route = Graph.ROOT,

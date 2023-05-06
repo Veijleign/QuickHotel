@@ -56,7 +56,7 @@ fun ServicesList(
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ServiceCard(
+fun ServiceCard1(
     item: ServiceCard,
     navController: NavHostController
 ) {
