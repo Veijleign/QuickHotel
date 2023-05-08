@@ -5,12 +5,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.quickhotel.ServiceCard
-import com.example.quickhotel.screens.homeScreens.BottomBarScreen
+import com.example.quickhotel.utils.BottomBarScreen
 import com.example.quickhotel.screens.homeScreens.MainScreenServices
 import com.example.quickhotel.screens.homeScreens.servicesScreens.*
 
 fun NavGraphBuilder.hotelServicesNavGraph(navController: NavHostController) {
-    // не удалять!! Еслии используем рутойвый, в котором должны быть ещё переходы - используем Builder
+    // не удалять!! Если используем рутойвый, в котором должны быть ещё переходы - используем Builder
     // классы испольузем для запуска экранов, объекты чтобы передать путь и сделать его хостом
     navigation(
         route = MainScreenGraph.SERVICES_ROOT, // тут переходит правильно!!!!
@@ -20,7 +20,7 @@ fun NavGraphBuilder.hotelServicesNavGraph(navController: NavHostController) {
             // отвечает за отрисовку всех элементов главного экрана
             MainScreenServices( // Works Correctly
                 name = BottomBarScreen.Home.route,
-                onRoomsClick = { routeTo ->
+                onServiceCardClick = { routeTo ->
                     //navController.navigate(HotelServicesScreen.Rooms.route)
                     navController.navigate(routeTo)
                 }

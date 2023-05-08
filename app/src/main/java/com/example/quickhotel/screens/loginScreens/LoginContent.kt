@@ -41,10 +41,9 @@ fun LoginContent( // needed to be changed
         mutableStateOf(false)
     }
     val icon = if (passwordVisibility.value)
-        painterResource(id = R.drawable.visibility_off_icon)
-    else
         painterResource(id = R.drawable.visibility_icon)
-
+    else
+        painterResource(id = R.drawable.visibility_off_icon)
     Column(
         modifier = Modifier
             .background(Color.Black)

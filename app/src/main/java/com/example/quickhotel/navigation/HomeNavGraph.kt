@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.quickhotel.screens.ChatScreen
 import com.example.quickhotel.screens.KeyScreen
-import com.example.quickhotel.screens.homeScreens.BottomBarScreen
+import com.example.quickhotel.utils.BottomBarScreen
 
 @Composable
 fun HomeNavGraph(navController: NavHostController) {

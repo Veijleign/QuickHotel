@@ -1,4 +1,4 @@
-package com.example.quickhotel.screens.homeScreens
+package com.example.quickhotel.utils
 
 import com.example.quickhotel.R
 

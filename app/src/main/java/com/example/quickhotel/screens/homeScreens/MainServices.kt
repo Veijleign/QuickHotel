@@ -24,7 +24,7 @@ import com.example.quickhotel.ServiceCard
 @Composable
 fun MainScreenServices(
     name: String,
-    onRoomsClick: (String) -> Unit
+    onServiceCardClick: (String) -> Unit
 ) {
     val mainServicesList: List<ServiceCard> = listOf(
         ServiceCard.AboutHotel,
@@ -49,7 +49,7 @@ fun MainScreenServices(
                 backgroundColor = Color.Black,
                 shape = RoundedCornerShape(10.dp),
                 onClick = {
-                    onRoomsClick(card.route)
+                    onServiceCardClick(card.route)
                 }
             ) {
                 Box(

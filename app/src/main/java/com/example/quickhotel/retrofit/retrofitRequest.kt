@@ -28,9 +28,6 @@ suspend fun retrofitAuthRequest(
         )
         Log.d("RetrofitTest", "${response.body()}")
         access = response.body() != null
-
-    //token = response.body()?.token.toString()
     }
-
     return access
 }

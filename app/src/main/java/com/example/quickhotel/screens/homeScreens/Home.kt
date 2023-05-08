@@ -16,35 +16,11 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.quickhotel.screens.homeScreens.BottomBarScreen
+import com.example.quickhotel.utils.BottomBarScreen
 import com.example.quickhotel.R
 import com.example.quickhotel.navigation.HomeNavGraph
-
-/*fun NavGraphBuilder.detailsNavGraph(navController: NavHostController) {
-    navigation(
-        route = Graph.DETAILS,
-        startDestination = DetailsScreen.Information.route
-    ) {
-        composable(route = DetailsScreen.Information.route) {
-            ScreenContent(name = DetailsScreen.Information.route) {
-                navController.navigate(DetailsScreen.Overview.route)
-            }
-        }
-        composable(route = DetailsScreen.Overview.route) {
-            ScreenContent(name = DetailsScreen.Overview.route) {
-                navController.popBackStack(
-                    route = DetailsScreen.Information.route,
-                    inclusive = false
-                )
-            }
-        }
-    }
-}
-
-sealed class DetailsScreen(val route: String) {
-    object Information : DetailsScreen(route = "INFORMATION")
-    object Overview: DetailsScreen(route = "OVERVIEW")
-}*/
+import com.example.quickhotel.ui.theme.SelectedColor
+import com.example.quickhotel.ui.theme.UnselectedColor
 
 @Composable
 fun HomeScreen(
@@ -148,13 +124,12 @@ fun BottomBar(
     val bottomBarDestination = items.any {it.route == currentDestination}
     if (bottomBarDestination) {
         BottomNavigation(
-            backgroundColor = Color.DarkGray,
-            elevation = 5.dp
+            backgroundColor = Color.Black
         ) {
             items.forEach { item ->
                 val selected = currentDestination == item.route
                 val contentColor =
-                    if (selected) Color.White else Color.Black // color of icon
+                    if (selected) SelectedColor else UnselectedColor // color of icon
                 BottomNavigationItem(
                     selected = selected,
                     onClick = { /*onItemClick(item)*/
@@ -163,8 +138,8 @@ fun BottomBar(
                             launchSingleTop = true
                         }
                     },
-                    selectedContentColor = Color.White,
-                    unselectedContentColor = Color.Gray,
+                    selectedContentColor = SelectedColor,
+                    unselectedContentColor = UnselectedColor,
                     label = {
                         Text(text = item.title)
                     },

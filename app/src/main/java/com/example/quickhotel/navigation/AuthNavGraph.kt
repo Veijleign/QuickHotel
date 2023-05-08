@@ -22,7 +22,6 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
         composable(route = AuthScreen.Login.route) {
             LoginContent(
                 onLogInClick = { login, password ->
-                    navController.popBackStack()
                     /*runBlocking {
                         retrofitAuthRequest(login, password)
                     }*/
@@ -38,6 +37,7 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
                         }
                         job.join()
                         if (access) { // add Toast
+                            navController.popBackStack() // add screens to backstack
                             navController.navigate(Graph.HOME)
                         } else {
                             Log.d("RetrofitTest", "Inside job: NO")
