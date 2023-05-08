@@ -4,6 +4,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.example.quickhotel.ServiceCard
 import com.example.quickhotel.screens.homeScreens.BottomBarScreen
 import com.example.quickhotel.screens.homeScreens.MainScreenServices
 import com.example.quickhotel.screens.homeScreens.servicesScreens.*
@@ -22,59 +23,47 @@ fun NavGraphBuilder.hotelServicesNavGraph(navController: NavHostController) {
                 onRoomsClick = { routeTo ->
                     //navController.navigate(HotelServicesScreen.Rooms.route)
                     navController.navigate(routeTo)
-                },
-/*                onSightsClick = {
-                    navController.navigate(HotelServicesScreen.Sights.route)
-                },
-                onRestaurantsClick = {
-                    navController.navigate(HotelServicesScreen.Restaurants.route)
-                },
-                onFitnessClick = {
-                    navController.navigate(HotelServicesScreen.Fitness.route)
-                },
-                onMoreServicesClick = {
-                    navController.navigate(HotelServicesScreen.MoreServices.route)
-                },
-                onRoomControlClick = {
-                    navController.navigate(HotelServicesScreen.RoomControl.route)
-                }*/
+                }
             )
         }
-        composable(route = HotelServicesScreen.AboutHotel.route) {
-            AboutHotelScreen(name = HotelServicesScreen.AboutHotel.route)
+        composable(route = ServiceCard.AboutHotel.route) {
+            AboutHotelScreen(name = ServiceCard.AboutHotel.route)
         }
-        composable(route = HotelServicesScreen.Rooms.route) {
-            RoomsScreenContent(name = HotelServicesScreen.Rooms.route)
+        composable(route = ServiceCard.Rooms.route) {
+            RoomsScreenContent(name = ServiceCard.Rooms.route)
         }
-        composable(route = HotelServicesScreen.Sights.route) {
-            SightsScreenContent(name = HotelServicesScreen.Sights.route)
+        composable(route = ServiceCard.Sights.route) {
+            SightsScreenContent(name = ServiceCard.Sights.route)
         }
-        composable(route = HotelServicesScreen.Restaurants.route) {
-            RestaurantsScreenContent(name = HotelServicesScreen.Restaurants.route)
+        composable(route = ServiceCard.Restaurants.route) {
+            RestaurantsScreenContent(name = ServiceCard.Restaurants.route)
         }
-        composable(route = HotelServicesScreen.Fitness.route) {
-            FitnessScreenContent(name = HotelServicesScreen.Fitness.route)
+        composable(route = ServiceCard.Fitness.route) {
+            FitnessScreenContent(name = ServiceCard.Fitness.route)
         }
-        composable(route = HotelServicesScreen.MoreServices.route) {
-            MoreServicesScreenContent(name = HotelServicesScreen.MoreServices.route)
+        composable(route = ServiceCard.MoreServices.route) {
+            MoreServicesScreenContent(name = ServiceCard.MoreServices.route)
         }
-        composable(route = HotelServicesScreen.RoomControl.route) {
-            RoomControlScreenContent(name = HotelServicesScreen.RoomControl.route)
+        composable(route = ServiceCard.RoomControl.route) {
+            RoomControlScreenContent(name = ServiceCard.RoomControl.route)
         }
     }
 }
 
+/*
+// use inside card
 sealed class RoomsScreen(val route: String) {
     object Overview : RoomsScreen(route = "ROOMS_OVERVIEW")
-}
+}*/
 
-sealed class HotelServicesScreen(val route: String) {
-    object ServicesList : HotelServicesScreen(route = "SERVICES_LIST")
-    object AboutHotel : HotelServicesScreen(route = "ABOUT_HOTEL")
-    object Rooms : HotelServicesScreen(route = "ROOMS")
-    object Sights : HotelServicesScreen(route = "SIGHTS")
-    object Restaurants : HotelServicesScreen(route = "RESTAURANTS")
-    object Fitness : HotelServicesScreen(route = "FITNESS")
-    object MoreServices : HotelServicesScreen(route = "ADDITIONAL_SERVICES")
-    object RoomControl : HotelServicesScreen(route = "ROOM_CONTROL")
-}
+/*
+sealed class ServiceCard(val route: String) {
+    object ServicesList : ServiceCard(route = "SERVICES_LIST")
+    object AboutHotel : ServiceCard(route = "ABOUT_HOTEL")
+    object Rooms : ServiceCard(route = "ROOMS")
+    object Sights : ServiceCard(route = "SIGHTS")
+    object Restaurants : ServiceCard(route = "RESTAURANTS")
+    object Fitness : ServiceCard(route = "FITNESS")
+    object MoreServices : ServiceCard(route = "ADDITIONAL_SERVICES")
+    object RoomControl : ServiceCard(route = "ROOM_CONTROL")
+}*/

@@ -6,43 +6,43 @@ sealed class ServiceCard(
     val image: Int
 ) {
 
-    object HotelInformation : ServiceCard(
+    object AboutHotel : ServiceCard(
         route = "ABOUT_HOTEL",
         title = "Информация об отеле",
         image = R.drawable.hotel_info_img
     )
 
-    object RoomsInformation: ServiceCard(
+    object Rooms: ServiceCard(
         route = "ROOMS",
         title = "Информация о комнатах",
         image = R.drawable.hotel_rooms
     )
 
-    object SightsInformation : ServiceCard(
+    object Sights : ServiceCard(
         route = "SIGHTS",
         title = "Достопримечательности",
         image = R.drawable.sights_img
     )
 
-    object RestaurantsAndBarsInformation : ServiceCard(
+    object Restaurants : ServiceCard(
         route = "RESTAURANTS",
         title = "Рестораны и бары",
         image = R.drawable.restaurants_bars_img
     )
 
-    object FitnessInformation : ServiceCard(
+    object Fitness : ServiceCard(
         route = "FITNESS",
         title = "Спа&Фитнес",
         image = R.drawable.fitness_img
     )
 
-    object MoreServicesInformation : ServiceCard(
+    object MoreServices : ServiceCard(
         route = "ADDITIONAL_SERVICES",
         title = "Услуги",
         image = R.drawable.services_img
     )
 
-    object RoomControlInformation : ServiceCard(
+    object RoomControl : ServiceCard(
         route = "ROOM_CONTROL",
         title = "Управление комнатой",
         image = R.drawable.room_control_img

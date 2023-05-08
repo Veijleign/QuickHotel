@@ -24,24 +24,16 @@ import com.example.quickhotel.ServiceCard
 @Composable
 fun MainScreenServices(
     name: String,
-    onRoomsClick: (String) -> Unit,
-/*    onSightsClick: () -> Unit,
-    onRestaurantsClick: () -> Unit,
-    onFitnessClick: () -> Unit,
-    onMoreServicesClick: () -> Unit,
-    onRoomControlClick: () -> Unit*/
+    onRoomsClick: (String) -> Unit
 ) {
-    val item = ServiceCard.RoomsInformation
-    val item2 = ServiceCard.SightsInformation
-
     val mainServicesList: List<ServiceCard> = listOf(
-        ServiceCard.HotelInformation,
-        ServiceCard.RoomsInformation,
-        ServiceCard.SightsInformation,
-        ServiceCard.RestaurantsAndBarsInformation,
-        ServiceCard.FitnessInformation,
-        ServiceCard.MoreServicesInformation,
-        ServiceCard.RoomControlInformation
+        ServiceCard.AboutHotel,
+        ServiceCard.Rooms,
+        ServiceCard.Sights,
+        ServiceCard.Restaurants,
+        ServiceCard.Fitness,
+        ServiceCard.MoreServices,
+        ServiceCard.RoomControl
     )
     Log.d("TestRequest", "Inside home screen")
     LazyColumn(

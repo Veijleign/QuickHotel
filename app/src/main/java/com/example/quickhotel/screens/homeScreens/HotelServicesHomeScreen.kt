@@ -16,43 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.example.quickhotel.ServiceCard
-//import com.example.quickhotel.navigation.MainScreenNavigationGraph
-
-/*
-@Composable
-fun ServicesList(
-    navController: NavHostController = rememberNavController()
-) {
-
-    val mainServicesList: List<ServiceCard> = listOf(
-        ServiceCard.HotelInformation,
-        ServiceCard.RoomsInformation,
-        ServiceCard.SightsInformation,
-        ServiceCard.RestaurantsAndBarsInformation,
-        ServiceCard.FitnessInformation,
-        ServiceCard.MoreServicesInformation,
-        ServiceCard.RoomControlInformation
-    )
-    // CORRECT TEST
-    // здесь отрисовывается каждый из элементов главного экрана с сервисами (карточки)
-    //MainScreenNavigationGraph(navController = navController)
-
-    */
-/*LazyColumn(
-
-    ) {
-        itemsIndexed(
-            mainServicesList
-        ) { _, item ->
-            ServiceCard(item, navController)
-            //MainScreenNavigationGraph(navController = navController)
-        }
-    }*//*
-
-}
-*/
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
