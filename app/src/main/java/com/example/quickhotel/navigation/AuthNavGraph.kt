@@ -6,8 +6,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.quickhotel.retrofit.retrofitAuthRequest
-import com.example.quickhotel.screens.ScreenContent
+import com.example.quickhotel.screens.ForgotScreenContent
 import com.example.quickhotel.screens.loginScreens.LoginContent
+import com.example.quickhotel.utils.LogClass
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,7 +26,6 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
                     /*runBlocking {
                         retrofitAuthRequest(login, password)
                     }*/
-
                     CoroutineScope(Dispatchers.Main).launch {
                         /*GlobalScope.async(Dispatchers.IO) {
                             retrofitAuthRequest(login, password)
@@ -33,14 +33,14 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
                         var access = false
                         val job = launch {
                             access = retrofitAuthRequest(login, password)
-                            Log.d("RetrofitTest", "Inside job: $access")
+                            Log.d("${LogClass.QHApp}", "Inside job: $access")
                         }
                         job.join()
                         if (access) { // add Toast
                             navController.popBackStack() // add screens to backstack
                             navController.navigate(Graph.HOME)
                         } else {
-                            Log.d("RetrofitTest", "Inside job: NO")
+                            Log.d("${LogClass.QHApp}", "Inside job: NO")
                         }
                     }
                 },
@@ -53,7 +53,7 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
             )
         }
         composable(route = AuthScreen.Forgot.route) {
-            ScreenContent(name = AuthScreen.Forgot.route) { }
+            ForgotScreenContent(name = AuthScreen.Forgot.route) { }
         }
     }
 }

@@ -2,6 +2,7 @@ package com.example.quickhotel.retrofit
 
 import android.util.Log
 import com.example.quickhotel.retrofit.common.Common
+import com.example.quickhotel.utils.LogClass
 import kotlinx.coroutines.*
 import retrofit2.Response
 
@@ -26,7 +27,7 @@ suspend fun retrofitAuthRequest(
         val response = Common.retrofitService.authFun(
             AuthRequest(login, password)
         )
-        Log.d("RetrofitTest", "${response.body()}")
+        Log.d("${LogClass.QHApp}", "${response.body()}")
         access = response.body() != null
     }
     return access

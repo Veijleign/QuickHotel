@@ -1,5 +1,6 @@
 package com.example.quickhotel.screens.loginScreens
 
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -23,6 +24,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.quickhotel.R
+import com.example.quickhotel.utils.LogClass
 
 @Composable
 fun LoginContent( // needed to be changed
@@ -30,6 +32,7 @@ fun LoginContent( // needed to be changed
     onForgotClick: () -> Unit,
     onLogInAsGuest: () -> Unit
 ) {
+    Log.d("${LogClass.QHApp}", "Login Screen")
     val userLogin = remember {
         mutableStateOf("")
     }
@@ -37,7 +40,7 @@ fun LoginContent( // needed to be changed
         mutableStateOf("")
     }
 
-    var passwordVisibility = remember {
+    val passwordVisibility = remember {
         mutableStateOf(false)
     }
     val icon = if (passwordVisibility.value)
@@ -135,7 +138,9 @@ fun LoginContent( // needed to be changed
                         onLogInClick(userLogin.value, userPassword.value)
                     },
                     border = BorderStroke(1.dp, Color.LightGray),
-                    shape = RoundedCornerShape(40)
+                    shape = RoundedCornerShape(40),
+                    //can be repalced to this
+                    //colors = ButtonDefaults.buttonColors(backgroundColor = Color.Black)
                 ) {
                     Text(
                         text = "Log In",
@@ -152,7 +157,9 @@ fun LoginContent( // needed to be changed
                         onLogInAsGuest()
                     },
                     border = BorderStroke(1.dp, Color.LightGray),
-                    shape = RoundedCornerShape(40)
+                    shape = RoundedCornerShape(40),
+                    //can be repalced to this
+                    //colors = ButtonDefaults.buttonColors(backgroundColor = Color.Black)
                 ) {
                     Text(
                         text = "Гость",

@@ -1,11 +1,12 @@
-package com.example.quickhotel
+package com.example.quickhotel.utils
+
+import com.example.quickhotel.R
 
 sealed class ServiceCard(
     val route: String,
     val title: String,
     val image: Int
 ) {
-
     object AboutHotel : ServiceCard(
         route = "ABOUT_HOTEL",
         title = "Информация об отеле",
@@ -14,7 +15,7 @@ sealed class ServiceCard(
 
     object Rooms: ServiceCard(
         route = "ROOMS",
-        title = "Информация о комнатах",
+        title = "Комнаты",
         image = R.drawable.hotel_rooms
     )
 

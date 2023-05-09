@@ -4,7 +4,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.example.quickhotel.ServiceCard
+import com.example.quickhotel.utils.ServiceCard
 import com.example.quickhotel.utils.BottomBarScreen
 import com.example.quickhotel.screens.homeScreens.MainScreenServices
 import com.example.quickhotel.screens.homeScreens.servicesScreens.*

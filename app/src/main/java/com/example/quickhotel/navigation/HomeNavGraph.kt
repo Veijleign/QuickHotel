@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.quickhotel.screens.ChatScreen
-import com.example.quickhotel.screens.KeyScreen
+import com.example.quickhotel.screens.homeScreens.ChatScreen
+import com.example.quickhotel.screens.homeScreens.KeyScreen
 import com.example.quickhotel.utils.BottomBarScreen
 
 @Composable

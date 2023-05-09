@@ -17,7 +17,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.quickhotel.ServiceCard
+import com.example.quickhotel.utils.ServiceCard
+import com.example.quickhotel.utils.LogClass
 
 // это одна карточка
 @OptIn(ExperimentalMaterialApi::class)
@@ -35,7 +36,7 @@ fun MainScreenServices(
         ServiceCard.MoreServices,
         ServiceCard.RoomControl
     )
-    Log.d("TestRequest", "Inside home screen")
+    Log.d("${LogClass.QHApp}", "Inside home screen (main services)")
     LazyColumn(
 
     ) {
@@ -62,7 +63,7 @@ fun MainScreenServices(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(130.dp),
-                        alpha = 0.85f
+                        alpha = 0.8f
                     )
                     Text(
                         text = card.title,
@@ -73,170 +74,5 @@ fun MainScreenServices(
                 }
             }
         }
-        /*item {
-            Spacer(modifier = Modifier.size(7.dp))
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(5.dp),
-                backgroundColor = Color.Black,
-                shape = RoundedCornerShape(10.dp),
-                onClick = {
-                    onRoomsClick()
-                }
-            ) {
-                Box(
-                    contentAlignment = Alignment.BottomStart
-                ) {
-                    Image(
-                        painter = painterResource(id = item2.image),
-                        contentDescription = item2.title,
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(130.dp),
-                        alpha = 0.85f
-                    )
-                    Text(
-                        text = item2.title,
-                        modifier = Modifier
-                            .padding(3.dp),
-                        fontSize = 26.sp
-                    )
-                }
-            }
-        }*/
-/*        item {
-            Spacer(modifier = Modifier.size(7.dp))
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(5.dp),
-                backgroundColor = Color.Black,
-                shape = RoundedCornerShape(10.dp),
-                onClick = {
-                    onRestaurantsClick()
-                }
-            ) {
-                Box(
-                    contentAlignment = Alignment.BottomStart
-                ) {
-                    Image(
-                        painter = painterResource(id = item2.image),
-                        contentDescription = item2.title,
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(130.dp),
-                        alpha = 0.85f
-                    )
-                    Text(
-                        text = item2.title,
-                        modifier = Modifier
-                            .padding(3.dp),
-                        fontSize = 26.sp
-                    )
-                }
-            }
-        }
-        item {
-            Spacer(modifier = Modifier.size(7.dp))
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(5.dp),
-                backgroundColor = Color.Black,
-                shape = RoundedCornerShape(10.dp),
-                onClick = {
-                    onFitnessClick()
-                }
-            ) {
-                Box(
-                    contentAlignment = Alignment.BottomStart
-                ) {
-                    Image(
-                        painter = painterResource(id = item2.image),
-                        contentDescription = item2.title,
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(130.dp),
-                        alpha = 0.85f
-                    )
-                    Text(
-                        text = item2.title,
-                        modifier = Modifier
-                            .padding(3.dp),
-                        fontSize = 26.sp
-                    )
-                }
-            }
-        }
-        item {
-            Spacer(modifier = Modifier.size(7.dp))
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(5.dp),
-                backgroundColor = Color.Black,
-                shape = RoundedCornerShape(10.dp),
-                onClick = {
-                    onMoreServicesClick()
-                }
-            ) {
-                Box(
-                    contentAlignment = Alignment.BottomStart
-                ) {
-                    Image(
-                        painter = painterResource(id = item2.image),
-                        contentDescription = item2.title,
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(130.dp),
-                        alpha = 0.85f
-                    )
-                    Text(
-                        text = item2.title,
-                        modifier = Modifier
-                            .padding(3.dp),
-                        fontSize = 26.sp
-                    )
-                }
-            }
-        }
-        item {
-            Spacer(modifier = Modifier.size(7.dp))
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(5.dp),
-                backgroundColor = Color.Black,
-                shape = RoundedCornerShape(10.dp),
-                onClick = {
-                    onRoomControlClick()
-                }
-            ) {
-                Box(
-                    contentAlignment = Alignment.BottomStart
-                ) {
-                    Image(
-                        painter = painterResource(id = item2.image),
-                        contentDescription = item2.title,
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(130.dp),
-                        alpha = 0.85f
-                    )
-                    Text(
-                        text = item2.title,
-                        modifier = Modifier
-                            .padding(3.dp),
-                        fontSize = 26.sp
-                    )
-                }
-            }
-        }*/
     }
 }
