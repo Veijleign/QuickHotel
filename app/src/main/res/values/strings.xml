@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">QuickHotel</string>
     <string name="mobile_key_text">Чтобы начать пользоваться вашим телефоном как мобильным ключом для доступа в комнату, вы должны войти в систему. После входа, пожалуйста, убедитесь что на вашем телефоне включен Bluetooth.</string>
+    <string name="forgot_password">Если Вы забыли пароль, пожалуйста, обратитесь к администратору</string>
+
 </resources>

@@ -6,7 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.quickhotel.retrofit.retrofitAuthRequest
-import com.example.quickhotel.screens.ForgotScreenContent
+import com.example.quickhotel.screens.loginScreens.ForgotPasswordScreen
 import com.example.quickhotel.screens.loginScreens.LoginContent
 import com.example.quickhotel.utils.LogClass
 import kotlinx.coroutines.CoroutineScope
@@ -22,6 +22,7 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
     ) {
         composable(route = AuthScreen.Login.route) {
             LoginContent(
+
                 onLogInClick = { login, password ->
                     /*runBlocking {
                         retrofitAuthRequest(login, password)
@@ -36,6 +37,7 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
                             Log.d("${LogClass.QHApp}", "Inside job: $access")
                         }
                         job.join()
+                        Log.d("${LogClass.QHApp}", "AFTER JOIN")
                         if (access) { // add Toast
                             navController.popBackStack() // add screens to backstack
                             navController.navigate(Graph.HOME)
@@ -43,6 +45,7 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
                             Log.d("${LogClass.QHApp}", "Inside job: NO")
                         }
                     }
+                    Log.d("${LogClass.QHApp}", "AFTER COROUTINE")
                 },
                 onForgotClick = { // change to the new screen
                     navController.navigate(AuthScreen.Forgot.route)
@@ -53,7 +56,13 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
             )
         }
         composable(route = AuthScreen.Forgot.route) {
-            ForgotScreenContent(name = AuthScreen.Forgot.route) { }
+            ForgotPasswordScreen(
+                name = AuthScreen.Forgot.route,
+                onGoBackClick = {
+                    navController.navigate(AuthScreen.Login.route)
+                    navController.popBackStack()
+                }
+            )
         }
     }
 }

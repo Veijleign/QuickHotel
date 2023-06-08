@@ -143,7 +143,7 @@ fun LoginContent( // needed to be changed
                     //colors = ButtonDefaults.buttonColors(backgroundColor = Color.Black)
                 ) {
                     Text(
-                        text = "Log In",
+                        text = "Войти",
                         color = Color.White
                     )
                 }

@@ -42,7 +42,7 @@ fun MainScreenServices(
     ) {
         itemsIndexed(
             mainServicesList
-        ) {index, card ->
+        ) { index, card ->
             Card(
                 modifier = Modifier
                     .fillMaxWidth()

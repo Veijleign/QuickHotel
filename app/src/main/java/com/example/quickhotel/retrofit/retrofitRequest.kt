@@ -6,29 +6,36 @@ import com.example.quickhotel.utils.LogClass
 import kotlinx.coroutines.*
 import retrofit2.Response
 
-@OptIn(DelicateCoroutinesApi::class)
 suspend fun retrofitAuthRequest(
     login: String,
     password: String
 ) : Boolean {
-    var user = User(
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-    )
+
     var access: Boolean = false
 
     withContext(Dispatchers.IO) {
         val response = Common.retrofitService.authFun(
             AuthRequest(login, password)
         )
+
         Log.d("${LogClass.QHApp}", "${response.body()}")
         access = response.body() != null
     }
     return access
+}
+
+suspend fun retrofitWeatherRequest(
+
+) : String {
+
+    var temperature = ""
+
+    withContext(Dispatchers.IO) {
+        val response = Common.retrofitServiceWeather.getWeather()
+
+        Log.d("${LogClass.QHApp}", "${response.body()}")
+
+        temperature = response.body()?.current_weather?.temperature.toString()
+    }
+    return temperature
 }

@@ -12,6 +12,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,10 +30,14 @@ import androidx.navigation.compose.rememberNavController
 import com.example.quickhotel.utils.BottomBarScreen
 import com.example.quickhotel.R
 import com.example.quickhotel.navigation.HomeNavGraph
+import com.example.quickhotel.retrofit.retrofitWeatherRequest
 import com.example.quickhotel.ui.theme.BottomBarColor
 import com.example.quickhotel.ui.theme.SelectedColor
 import com.example.quickhotel.ui.theme.UnselectedColor
 import com.example.quickhotel.utils.LogClass
+import com.example.quickhotel.utils.MenuItem
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Composable
@@ -106,6 +112,9 @@ fun TopBar(
     navController: NavHostController,
     onNavigationItemClick: () -> Unit
 ) {
+    var currentWeather = remember {
+        mutableStateOf("")
+    }
     // make BACK button
     val items = listOf(
         BottomBarScreen.Home,
@@ -125,17 +134,28 @@ fun TopBar(
                         .fillMaxWidth(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(
-                        text = "Room 611",
-                        fontSize = 20.sp,
-                        maxLines = 1
-                    )
+                    if (currentDestination == "chat") {
+                        Text(
+                            text = "Чат c администратором",
+                            fontSize = 20.sp,
+                            maxLines = 1
+                        )
+                    } else {
+                        Text(
+                            text = "Комната 611",
+                            fontSize = 20.sp,
+                            maxLines = 1
+                        )
+                    }
+
                 }
             },
             backgroundColor = Color.Transparent.copy(alpha = 0.2f),
             //colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Cyan.copy(alpha = 0.3f)),
             navigationIcon = {
-                IconButton(onClick = onNavigationItemClick) {
+                IconButton(
+                    onClick = onNavigationItemClick
+                ) {
                     Icon(
                         Icons.Default.Menu, "Menu",
                         modifier = Modifier.size(34.dp)
@@ -143,23 +163,29 @@ fun TopBar(
                 }
             },
             actions = {
-                IconButton(onClick = { // synchronize weather
-
+                IconButton(onClick = {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        currentWeather.value = retrofitWeatherRequest()
+                    }
                 }) {
-                    Row() {
-                        Icon(
-                            modifier = Modifier
-                                .size(29.dp),
-                            painter = painterResource(id = R.drawable.weather_icon),
-                            contentDescription = "Navigation Icon",
-                            tint = Color.White,
-                        )
-                        Spacer(Modifier.width(4.dp))
-                        Text(
-                            text = "13°C",
-                            fontSize = 22.sp,
-                            color = Color.White
-                        )
+                    if (currentDestination == "chat" || currentDestination == "key") {
+
+                    } else {
+                        Row() {
+                            Icon(
+                                modifier = Modifier
+                                    .size(29.dp),
+                                painter = painterResource(id = R.drawable.weather_icon),
+                                contentDescription = "Navigation Icon",
+                                tint = Color.White,
+                            )
+                            Spacer(Modifier.width(4.dp))
+                            Text(
+                                text = "${currentWeather.value}",
+                                fontSize = 22.sp,
+                                color = Color.White
+                            )
+                        }
                     }
                 }
             },
@@ -180,7 +206,7 @@ fun BottomBar(
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination?.route
 
-    val bottomBarDestination = items.any { it.route == currentDestination }
+    val bottomBarDestination = items.any { it.route == currentDestination } // для запомнинания страницы, чтобы убирался верхня и нижняя навигационные части
     if (bottomBarDestination) {
         BottomNavigation(
             backgroundColor = BottomBarColor
@@ -215,7 +241,6 @@ fun BottomBar(
             }
         }
     }
-
 }
 
 @Composable
@@ -272,11 +297,5 @@ fun DrawerBody(
     }
 }
 
-data class MenuItem(
-    val id: String,
-    val title: String,
-    val contentDescription: String,
-    val icon: ImageVector
-)
 
 

@@ -32,7 +32,8 @@ fun QuickHotelTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Compos
     val colors = if (darkTheme) {
         DarkColorPalette
     } else {
-        LightColorPalette
+        //LightColorPalette
+        DarkColorPalette
     }
 
     MaterialTheme(
