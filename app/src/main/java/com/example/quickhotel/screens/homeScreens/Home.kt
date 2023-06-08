@@ -126,7 +126,7 @@ fun TopBar(
 
     val bottomBarDestination =
         items.any { it.route == currentDestination } // для запомнинания страницы, чтобы убирался верхня и нижняя навигационные части
-    if (bottomBarDestination) {
+
         TopAppBar(
             title = {
                 Box(
@@ -134,20 +134,25 @@ fun TopBar(
                         .fillMaxWidth(),
                     contentAlignment = Alignment.Center
                 ) {
-                    if (currentDestination == "chat") {
-                        Text(
-                            text = "Чат c администратором",
-                            fontSize = 20.sp,
-                            maxLines = 1
-                        )
-                    } else {
-                        Text(
-                            text = "Комната 611",
-                            fontSize = 20.sp,
-                            maxLines = 1
-                        )
-                    }
+                    when(currentDestination) {
+                        "chat" -> {
+                            Text(
+                                text = "Чат c администратором",
+                                fontSize = 20.sp,
+                                maxLines = 1
+                            )
+                        }
+                        "home" -> {
+                            Text(
+                                text = "Комната 611",
+                                fontSize = 20.sp,
+                                maxLines = 1
+                            )
+                        }
+                        else -> {
 
+                        }
+                    }
                 }
             },
             backgroundColor = Color.Transparent.copy(alpha = 0.2f),
@@ -181,7 +186,7 @@ fun TopBar(
                             )
                             Spacer(Modifier.width(4.dp))
                             Text(
-                                text = "${currentWeather.value}",
+                                text = currentWeather.value,
                                 fontSize = 22.sp,
                                 color = Color.White
                             )
@@ -191,7 +196,7 @@ fun TopBar(
             },
             contentColor = Color.White,
         )
-    }
+
 }
 
 @Composable

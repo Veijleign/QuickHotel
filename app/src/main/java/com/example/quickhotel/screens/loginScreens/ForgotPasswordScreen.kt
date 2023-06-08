@@ -26,8 +26,7 @@ import com.example.quickhotel.utils.LogClass
 
 @Composable
 fun ForgotPasswordScreen(
-    name: String,
-    onGoBackClick: () -> Unit
+    name: String
 ) {
     Log.d("${LogClass.QHApp}", "Inside ForgotScreen")
     Box(
@@ -53,23 +52,6 @@ fun ForgotPasswordScreen(
                 modifier = Modifier
                     .height(10.dp)
             )
-            OutlinedButton(
-                modifier = Modifier
-                    .width(110.dp)
-                    .height(45.dp),
-                onClick = {
-                    onGoBackClick()
-                },
-                border = BorderStroke(1.dp, Color.LightGray),
-                shape = RoundedCornerShape(40),
-                //can be repalced to this
-                //colors = ButtonDefaults.buttonColors(backgroundColor = Color.Black)
-            ) {
-                Text(
-                    text = "Назад",
-                    color = Color.White
-                )
-            }
         }
     }
 }

@@ -9,19 +9,19 @@ sealed class BottomBarScreen( // representation of different screens
 ) {
     object Home: BottomBarScreen(
         route = "home",
-        title = "Home",
+        title = "Главная",
         icon = R.drawable.main_icon
     )
 
     object Key: BottomBarScreen(
         route = "key",
-        title = "Key",
+        title = "Ключ",
         icon = R.drawable.key_icon
     )
 
     object Chat: BottomBarScreen(
         route = "chat",
-        title = "Chat",
+        title = "Чат",
         icon = R.drawable.chat_icon
     )
 }
