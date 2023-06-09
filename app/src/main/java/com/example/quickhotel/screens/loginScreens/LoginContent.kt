@@ -87,7 +87,7 @@ fun LoginContent( // needed to be changed
                     userLogin.value = it
                 },
                 label = {
-                    Text(text = "User Login", color = Color.White)
+                    Text(text = "Логин", color = Color.White)
                 },
                 singleLine = true
             )
@@ -105,7 +105,7 @@ fun LoginContent( // needed to be changed
                     userPassword.value = it
                 },
                 label = {
-                    Text(text = "User Password", color = Color.White)
+                    Text(text = "Пароль", color = Color.White)
                 },
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(

@@ -116,22 +116,23 @@ fun TopBar(
         mutableStateOf("")
     }
     // make BACK button
-    val items = listOf(
+    /*val items = listOf(
         BottomBarScreen.Home,
         BottomBarScreen.Key,
         BottomBarScreen.Chat
-    )
+    )*/
+
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination?.route
 
-    val bottomBarDestination =
-        items.any { it.route == currentDestination } // для запомнинания страницы, чтобы убирался верхня и нижняя навигационные части
+    /*val bottomBarDestination = items.any { it.route == currentDestination } // для запомнинания страницы, чтобы убирался верхня и нижняя навигационные части*/
 
         TopAppBar(
             title = {
                 Box(
                     modifier = Modifier
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                    ,
                     contentAlignment = Alignment.Center
                 ) {
                     when(currentDestination) {
