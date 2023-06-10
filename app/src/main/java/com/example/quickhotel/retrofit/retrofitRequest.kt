@@ -18,7 +18,7 @@ suspend fun retrofitAuthRequest(
             AuthRequest(login, password)
         )
 
-        Log.d("${LogClass.QHApp}", "${response.body()}")
+        Log.d("${LogClass.QHApp}", "AUTH: ${response.body()}")
         access = response.body() != null
     }
     return access
@@ -33,7 +33,7 @@ suspend fun retrofitWeatherRequest(
     withContext(Dispatchers.IO) {
         val response = Common.retrofitServiceWeather.getWeather()
 
-        Log.d("${LogClass.QHApp}", "${response.body()}")
+        Log.d("${LogClass.QHApp}", "WEATHER: ${response.body()}")
 
         temperature = response.body()?.current_weather?.temperature.toString()
     }
