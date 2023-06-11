@@ -13,17 +13,22 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.OutlinedButton
+import androidx.compose.material.Slider
+import androidx.compose.material.SliderDefaults
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.material.TabRowDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -71,7 +76,6 @@ fun TabLayout(
                     Modifier.pagerTabIndicatorOffset(pagerState, tabPosition)
                 )
             },
-            backgroundColor = Color.Black,
             contentColor = Color.White
         ) {
             tabList.forEachIndexed { index, el ->
@@ -99,11 +103,11 @@ fun TabLayout(
                 }
 
                 1 -> {
-                    Test2()
+                    ClimateControl()
                 }
 
                 2 -> {
-                    Test3()
+                    CurtainsControl()
                 }
 
                 else -> {
@@ -117,6 +121,11 @@ fun TabLayout(
 
 @Composable
 fun LightControlTab() {
+
+    val allLightControl = remember {
+        mutableStateOf("Вкл")
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -145,13 +154,16 @@ fun LightControlTab() {
                     .background(color = Color.DarkGray),
                 colors = ButtonDefaults.buttonColors(backgroundColor = Color.DarkGray),
                 onClick = {
-                    /*TODO*/
+                    if (allLightControl.value == "Вкл") {
+                        allLightControl.value = "Выкл"
+                    } else {
+                        allLightControl.value = "Вкл"
+                    }
                 },
             ) {
                 Text(
-                    text = "Вкл",
+                    text = "${allLightControl.value}",
                     color = Color.White,
-
                     )
             }
         }
@@ -282,11 +294,18 @@ fun LightControlTab() {
 @Preview
 @Composable
 fun Test() {
-    Test2()
+    LightControlTab()
 }
 
 @Composable
-fun Test2() {
+fun ClimateControl() {
+
+    val currentTemperature = remember {
+        mutableStateOf(23)
+    }
+    val climateOnOff = remember {
+        mutableStateOf("Выключить")
+    }
 
     Column(
         Modifier.fillMaxSize(),
@@ -300,7 +319,7 @@ fun Test2() {
             border = BorderStroke(1.dp, Color.LightGray),
             shape = RoundedCornerShape(100),
             onClick = {
-                /*TODO*/
+                currentTemperature.value = currentTemperature.value + 1
             }
         ) {
             Icon(
@@ -314,7 +333,7 @@ fun Test2() {
         Spacer(modifier = Modifier.size(10.dp))
 
         Text(
-            text = "23 C",
+            text = "${currentTemperature.value}°C",
             fontSize = 50.sp,
             color = Color.White
         )
@@ -327,7 +346,7 @@ fun Test2() {
             border = BorderStroke(1.dp, Color.LightGray),
             shape = RoundedCornerShape(100),
             onClick = {
-                /*TODO*/
+                currentTemperature.value = currentTemperature.value - 1
             },
         ) {
             Icon(
@@ -401,13 +420,18 @@ fun Test2() {
 
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.DarkGray),
             onClick = {
-                /*TODO*/
+                if (climateOnOff.value == "Выключить") {
+                    climateOnOff.value = "Включить"
+
+                } else {
+                    climateOnOff.value = "Выключить"
+                }
             },
             shape = RoundedCornerShape(30),
 
             ) {
             Text(
-                text = "Выключить",
+                text = "${climateOnOff.value}",
                 color = Color.White,
 
                 )
@@ -417,7 +441,108 @@ fun Test2() {
 }
 
 @Composable
-fun Test3() {
+fun CurtainsControl() {
 
-    Text(text = "33333333333333333333333")
+    val sliderPosition = remember {
+        mutableStateOf(0f)
+    }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+
+        Column(
+            modifier = Modifier
+                .fillMaxHeight(0.45f)
+                .fillMaxWidth(),
+            verticalArrangement = Arrangement.Bottom,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Row {
+                OutlinedButton(
+                    modifier = Modifier
+                        .width(120.dp)
+                        .height(50.dp),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.DarkGray),
+                    onClick = {
+                        sliderPosition.value = 10f
+                    },
+                    shape = RoundedCornerShape(30),
+                ) {
+                    Text(
+                        text = "Открыть",
+                        color = Color.White,
+                        fontSize = 18.sp
+                    )
+                }
+                Spacer(
+                    modifier = Modifier
+                        .size(15.dp)
+                )
+                OutlinedButton(
+                    modifier = Modifier
+                        .width(120.dp)
+                        .height(50.dp),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.DarkGray),
+                    onClick = {
+                        sliderPosition.value = 0f
+                    },
+                    shape = RoundedCornerShape(30),
+                ) {
+                    Text(
+                        text = "Закрыть",
+                        color = Color.White,
+                        fontSize = 18.sp
+                    )
+                }
+            }
+        }
+        Spacer(
+            modifier = Modifier
+                .size(10.dp)
+        )
+        Column(
+            modifier = Modifier
+                .fillMaxSize(1f),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Column(
+
+            ) {
+                Text(
+                    text = "Регулировка",
+                    color = Color.White,
+                    fontSize = 18.sp
+                )
+
+                Slider(
+                    modifier = Modifier
+                        .width(350.dp),
+                    value = sliderPosition.value,
+                    valueRange = 0f..10f,
+                    steps = 9,
+                    onValueChange = {
+                        sliderPosition.value = it
+                    },
+                    colors = SliderDefaults.colors(
+                        thumbColor = Color.LightGray,
+                        activeTickColor = Color.LightGray,
+                        inactiveTickColor = Color.LightGray,
+                        activeTrackColor = Color.DarkGray,
+                        inactiveTrackColor = Color.DarkGray
+                    )
+                )
+            }
+            Text(
+                text = "Открыто на: ${sliderPosition.value.toInt()}",
+                color = Color.White,
+                fontSize = 18.sp
+            )
+        }
+    }
 }
