@@ -8,6 +8,7 @@ import com.example.quickhotel.utils.ServiceCard
 import com.example.quickhotel.utils.BottomBarScreen
 import com.example.quickhotel.screens.homeScreens.MainScreenServices
 import com.example.quickhotel.screens.homeScreens.servicesScreens.*
+import com.example.quickhotel.screens.homeScreens.servicesScreens.sightsInsideScreens.SightsTest
 
 fun NavGraphBuilder.hotelServicesNavGraph(navController: NavHostController) {
     // не удалять!! Если используем рутойвый, в котором должны быть ещё переходы - используем Builder
@@ -33,7 +34,7 @@ fun NavGraphBuilder.hotelServicesNavGraph(navController: NavHostController) {
             RoomsScreenContent(name = ServiceCard.Rooms.route)
         }
         composable(route = ServiceCard.Sights.route) {
-            SightsScreenContent(name = ServiceCard.Sights.route)
+            SightsTest()
         }
         composable(route = ServiceCard.Restaurants.route) {
             RestaurantsScreenContent(name = ServiceCard.Restaurants.route)

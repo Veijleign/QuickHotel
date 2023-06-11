@@ -31,7 +31,7 @@ sealed class Restaurants(
 
     object OrderFoodToRoom : Restaurants(
         route = "ASIAN_KITCHEN",
-        title = "Азиатская кухня",
+        title = "Заказ еды",
         image = R.drawable.order_to_room,
         description = R.string.order_food_description
     )

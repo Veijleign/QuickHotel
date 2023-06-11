@@ -23,14 +23,19 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.quickhotel.retrofit.retrofitSightsRequest
 import com.example.quickhotel.utils.LogClass
 import com.example.quickhotel.utils.Rooms
 import com.example.quickhotel.utils.Sights
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun SightsScreenContent(
-    name: String
+    name: String,
+    onSightsServiceClick: (String) -> Unit
 ) {
     Log.d("${LogClass.QHApp}", "Inside SightsScreen")
 
@@ -53,7 +58,7 @@ fun SightsScreenContent(
                 backgroundColor = Color.Black,
                 shape = RoundedCornerShape(10.dp),
                 onClick = {
-
+                    onSightsServiceClick(card.route)
                 }
             ) {
                 Box(

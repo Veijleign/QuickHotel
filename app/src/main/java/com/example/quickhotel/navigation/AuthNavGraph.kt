@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.quickhotel.retrofit.retrofitAuthRequest
+import com.example.quickhotel.retrofit.retrofitSightsRequest
 import com.example.quickhotel.screens.loginScreens.ForgotPasswordScreen
 import com.example.quickhotel.screens.loginScreens.LoginContent
 import com.example.quickhotel.utils.LogClass
@@ -22,7 +23,6 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
     ) {
         composable(route = AuthScreen.Login.route) {
             LoginContent(
-
                 onLogInClick = { login, password ->
                     /*runBlocking {
                         retrofitAuthRequest(login, password)
@@ -52,6 +52,9 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
                 },
                 onLogInAsGuest = {
                     navController.navigate(Graph.HOME)
+                    /*CoroutineScope(Dispatchers.IO).launch {
+                        retrofitSightsRequest() // DELEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEETE
+                    }*/
                 }
             )
         }
