@@ -204,7 +204,7 @@ fun LightControlTab() {
                     Icon(
                         modifier = Modifier
                             .size(30.dp),
-                        painter = painterResource(id = R.drawable.add_icon),
+                        painter = painterResource(id = R.drawable.remove_icon),
                         contentDescription = "Add",
                         tint = Color.White,
                     )
@@ -220,7 +220,7 @@ fun LightControlTab() {
                     Icon(
                         modifier = Modifier
                             .size(30.dp),
-                        painter = painterResource(id = R.drawable.remove_icon),
+                        painter = painterResource(id = R.drawable.add_icon),
                         contentDescription = "Add",
                         tint = Color.White
                     )
@@ -259,13 +259,14 @@ fun LightControlTab() {
                         .background(color = Color.DarkGray),
                     colors = ButtonDefaults.buttonColors(backgroundColor = Color.DarkGray),
                     onClick = {
+
                         /*TODO*/
                     },
                 ) {
                     Icon(
                         modifier = Modifier
                             .size(30.dp),
-                        painter = painterResource(id = R.drawable.add_icon),
+                        painter = painterResource(id = R.drawable.remove_icon),
                         contentDescription = "Add",
                         tint = Color.White,
                     )
@@ -281,7 +282,7 @@ fun LightControlTab() {
                     Icon(
                         modifier = Modifier
                             .size(30.dp),
-                        painter = painterResource(id = R.drawable.remove_icon),
+                        painter = painterResource(id = R.drawable.add_icon),
                         contentDescription = "Add",
                         tint = Color.White
                     )
